@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v10.2.6',
-        'version' => '10.2.6.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '8badaa07881cfbc5038e77f370e06aa304b8364b',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -93,6 +93,15 @@
             'aliases' => array(),
             'reference' => 'c83e88a30524f9360b11f585f71e6b17313b7187',
             'dev_requirement' => true,
+        ),
+        'flynsarmy/csv-seeder' => array(
+            'pretty_version' => 'v2.0.6',
+            'version' => '2.0.6.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../flynsarmy/csv-seeder',
+            'aliases' => array(),
+            'reference' => 'b98d4ae2e9521bb5e9784b61febf59b4501a5a56',
+            'dev_requirement' => false,
         ),
         'fruitcake/php-cors' => array(
             'pretty_version' => 'v1.2.0',
@@ -371,12 +380,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v10.2.6',
-            'version' => '10.2.6.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '8badaa07881cfbc5038e77f370e06aa304b8364b',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -748,8 +757,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
