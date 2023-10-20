@@ -1,0 +1,32 @@
+id,species_id,name
+1,1,Labrador
+2,1,German Shepherd
+3,1,Poodle
+4,1,Bulldog
+5,2,Persian
+6,2,Siamese
+7,2,Bengal
+8,3,Parrot
+9,3,Sparrow
+10,3,Eagle
+11,4,Goldfish
+12,4,Betta Fish
+13,4,Tuna
+14,5,Iguana
+15,5,Python
+16,5,Turtle
+17,6,Frog
+18,6,Newt
+19,7,Arabian
+20,7,Quarter Horse
+21,7,Thoroughbred
+22,8,Mouse
+23,8,Rat
+24,9,Dwarf Hotot
+25,9,Lop
+26,10,Ant
+27,10,Butterfly
+28,10,Dragonfly
+29,11,Spider
+30,11,Scorpion
+31,12,Other Breed
