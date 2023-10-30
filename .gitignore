@@ -1,2 +1,12 @@
 .env
-vendor
+
+# JetBrains IDEs
+.idea
+
+# Dependency directories
+node_modules/
+vendor/
+
+# MacOs files
+.DS_Store
+

@@ -1,66 +1,214 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Api v1 for  petShop project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Author
+- [@Narigane3](https://github.com/Narigane3)
 
-## About Laravel
+## Description
+This project is a back api for petShop project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Documentation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
+- [Features](#features)
+- [Env require](#env-require)
+- [Getting Started](#getting-started)
+    - [Create & set up .env file (obligatory for work)](#create--set-up-env-file-obligatory-for-work)
+    - [Set up the db connection (don't use this config for production)](#set-up-the-db-connection-dont-use-this-config-for-production)
+    - [Configure Sanctum (for auth)](#configure-sanctum-for-auth)
+    - [Set up the mail server (for send email confirmation) actual disable](#set-up-the-mail-server-for-send-email-confirmation-actual-disable)
+    - [Configure the url for redirect to the front app](#configure-the-url-for-redirect-to-the-front-app)
+    - [If production deploy](#if-production-deploy)
+- [Exemple of request with axios for auth whit Sanctum 3 & fortify](#exemple-of-request-with-axios-for-auth-whit-sanctum-3--fortify)
+    - [Use axios with default config for request main api](#use-axios-with-default-config-for-request-main-api)
+    - [Exemple function for register user](#exemple-function-for-register-user)
+    - [Exemple function for login user](#exemple-function-for-login-user)
+    - [Exemple function for logout user](#exemple-function-for-logout-user)
+- [Use Postman for test api](#use-postman-for-test-api)
+    - [Configure Postman for work with Sanctum](#configure-postman-for-work-with-sanctum)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
+- Laravel 10
+- Sanctum 3
+- Fortify
 
-## Learning Laravel
+## Env require
+- Docker (for dev fast start)
+- PHP 8.2
+- MySQL 8.0
+- SMTP server (for send email confirmation)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Getting Started
+```shell
+composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Create a new Laravel container
+php artisan sail:install
 
-## Laravel Sponsors
+# Start the container
+./vendor/bin/sail up
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Execute key generation (if necessary)
+./vendor/bin/sail artisan key:generate
 
-### Premium Partners
+# Execute migration
+./vendor/bin/sail artisan migrate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```
+## Create & set up .env file (obligatory for work)
+```shell
+# Create .env file
+cp .env.example .env
+```
+### Set up the db connection (don't use this config for production)
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=petshop
+DB_USERNAME=petshop_user
+DB_PASSWORD=petshop_password
+```
+### Configure Sanctum (for auth)
+```dotenv
+# set url of front app for auth with sanctum (full url with port)
+# If you use subdomain for front app use .domain.com
+SANCTUM_STATEFUL_DOMAINS=localhost,localhost:5173,localhost:3000,127.0.0.1,127.0.0.1:8000,::1
+# if you use subdomain for front app use .domain.com
+SESSION_DOMAIN=localhost
+```
 
-## Contributing
+### Set up the mail server (for send email confirmation) actual disable
+```dotenv
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=your_email_
+MAIL_FROM_NAME="${APP_NAME}"
+```
+### Configure the url for redirect to the front app
+###### If request does not expect a json response
+```dotenv
+FRONT_URL="http://localhost:3000"
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### If production deploy
+```dotenv
+# Turn off debug mode
+APP_DEBUG=false
+```
 
-## Code of Conduct
+## Exemple of request with axios for auth whit Sanctum 3 & fortify
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Use axios with default config for request main api
+install axios
+```shell
+npm install axios
+```
 
-## Security Vulnerabilities
+Instance of axios with default config for request main api
+```javascript
+import axios from 'axios';
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+// instace of axios with default config for request main api
+const RequestApi = axios.create({
+  baseURL: 'http://localhost/',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': 'localhost:5173', // value of dotenv variable SANCTUM_STATEFUL_DOMAINS
+  },
+  withCredentials: true, // for work with cross domain exemple : localhost
+});
+```
 
-## License
+#### Exemple function for register user
+```javascript
+/**
+ * Register User
+ * @param object {name, email, password, password_confirmation} user info
+ * @return {Promise<void>} user info
+ */
+async function register({name, email, password, password_confirmation}) {
+  try {
+    // Set CSRF cookie
+    await RequestApi.get('sanctum/csrf-cookie');
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    // register user
+    await RequestApi.post('api/register', {
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation
+    })
+
+    const response = await RequestApi.post('api/user')
+
+    return response.data
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+#### Exemple function for login user
+```javascript
+/**
+ * login user with email and password
+ * @param email
+ * @param password
+ * @return {Promise<any>} user info
+ */
+async function login(email, password) {
+  try {
+    // Set CSRF cookie
+    await RequestApi.get('sanctum/csrf-cookie');
+
+    // login user with email and password
+    await RequestApi.post('api/login', {
+      email: email,
+      password: password
+    })
+
+    // get user info
+    const response = await RequestApi.get('api/user');
+    return response.data
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+#### Exemple function for logout user
+```javascript
+/**
+ * logout user
+ */
+async function logout() {
+  try {
+    // logout user
+    await RequestApi.post('api/logout');
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+For more information on how to use Sanctum, see the [official documentation](https://laravel.com/docs/10.x/sanctum).
+
+## Use Postman for test api
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1a0b3b2b9b8b2b2b2b2b)
+
+### Configure Postman for work with Sanctum
+
+Read this [article](https://blog.codecourse.com/laravel-sanctum-airlock-with-postman) for more information
+
+#### Configure Headers for work with Sanctum
+1. Set Accept header to application/json
+2. Set Referer header to http://localhost:3000
+   - use the value of the SANCTUM_STATEFUL_DOMAINS dotenv variable (e.g. localhost:5173),<br> which is used to grant authorisation to use the authentication cookie 
+
