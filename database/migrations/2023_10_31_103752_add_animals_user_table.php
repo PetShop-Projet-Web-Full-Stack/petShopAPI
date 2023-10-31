@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animals_user', function (Blueprint $table) {
-            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unique(['animal_id', 'user_id']);
+            $table->foreignId('animals_id')->constrained()->onDelete('cascade');
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->unique(['animals_id', 'users_id']);
         });
     }
 

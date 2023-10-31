@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Race extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
 
-    public function species()
+    public function species(): BelongsTo
     {
-        return $this->hasMany(Species::class);
+        return $this->belongsTo(Species::class);
     }
 }

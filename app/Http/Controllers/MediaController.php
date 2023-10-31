@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
-use App\Http\Requests\MediaRequest;
+use App\Http\Requests\MediaCreateRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class MediaController extends Controller
@@ -13,7 +13,7 @@ class MediaController extends Controller
         return Media::all();
     }
 
-    public function create(MediaRequest $request): Media
+    public function create(MediaCreateRequest $request): Media
     {
         return Media::create($request->toArray());
     }
