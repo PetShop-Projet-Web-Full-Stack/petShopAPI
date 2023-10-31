@@ -1,51 +1,51 @@
-id,name,address,zipcode,city,phone
-1,Le Chien Heureux,123 Rue de la Patte,75001,Paris,0145623987
-2,Chaton Câlin,456 Avenue des Félins,69001,Lyon,0478562143
-3,La Griffe Dorée,789 Rue du Miaou,13001,Marseille,0497542136
-4,Le Coin des Animaux,101 Place des Oiseaux,31000,Toulouse,0563789456
-5,Aux Poils Doux,222 Boulevard des Chiens,44000,Nantes,0245698123
-6,Le Nid d'Animaux,333 Rue des Lapins,33000,Bordeaux,0556789234
-7,La Patte d'Or,444 Avenue des Rongeurs,69002,Lyon,0478654321
-8,Le Paradis des Animaux,555 Place des Chats,13002,Marseille,0497887654
-9,Chien et Chat Compagnie,666 Rue des Chiots,75002,Paris,0145123678
-10,La Ferme aux Animaux,777 Avenue des Poules,75003,Paris,0145236987
-11,Le Royaume des Animaux,888 Rue des Poissons,75004,Paris,0145347896
-12,Au Bonheur des Oiseaux,999 Place des Canaris,75005,Paris,0145458905
-13,Le Monde des Reptiles,1010 Rue des Serpents,69003,Lyon,0478765432
-14,Les Petits Compagnons,1111 Avenue des Hamsters,13003,Marseille,0497678901
-15,Le Refuge Animalier,1212 Boulevard des Tortues,44001,Nantes,0245123456
-16,Aux Ailes Colorées,1313 Rue des Perroquets,33001,Bordeaux,0556345678
-17,Le Zoo Domestique,1414 Place des Fauves,31001,Toulouse,0563890123
-18,La Grange aux Chats,1515 Avenue des Lynx,69004,Lyon,0478567890
-19,Les Amis à Poils,1616 Rue des Lapins,13004,Marseille,0497789012
-20,Le Petit Zoo,1717 Place des Souris,75006,Paris,0145123456
-21,Le Coin des Nacs,1818 Rue des Nouveaux Animaux de Compagnie,69005,Lyon,0478678901
-22,Le Jardin des Animaux,1919 Avenue des Oiseaux Exotiques,33002,Bordeaux,0556456789
-23,Les Petits Rongeurs,2020 Place des Gerbilles,44002,Nantes,0245234567
-24,Aux Plumes Enchantées,2121 Rue des Canards,13005,Marseille,0497890123
-25,La Jungle Tropicale,2222 Avenue des Singes,75007,Paris,0145678901
-26,La Cité des Poissons,2323 Rue des Poissons Exotiques,69006,Lyon,0478789012
-27,Le Refuge des Animaux,2424 Place des Chiens Errants,31002,Toulouse,0563123456
-28,La Ferme en Ville,2525 Avenue des Animaux de la Ferme,33003,Bordeaux,0556123456
-29,Au Pays des Reptiles,2626 Rue des Reptiles Exotiques,44003,Nantes,0245123456
-30,Le Monde des Insectes,2727 Place des Insectes,13006,Marseille,0497123456
-31,Le Royaume des Oiseaux,2828 Avenue des Oiseaux Exotiques,75008,Paris,0145123456
-32,La Vallée des Singes,2929 Rue des Singes Exotiques,69007,Lyon,0476123456
-33,La Savane Africaine,3030 Place des Animaux de la Savane,31003,Toulouse,0567123456
-34,Le Paradis des Chiens,3131 Avenue des Chiens Heureux,33004,Bordeaux,0557123456
-35,Les Chats du Monde,3232 Rue des Chats Exotiques,44004,Nantes,0246123456
-36,La Forêt Enchantée,3333 Place des Animaux Magiques,13007,Marseille,0498123456
-37,Le Monde des Abysses,3434 Avenue des Animaux Marins,75009,Paris,0146123456
-38,Les Animaux Mystiques,3535 Rue des Animaux Mythiques,69008,Lyon,0475123456
-39,Le Refuge des Papillons,3636 Place des Papillons,31004,Toulouse,0568123456
-40,Le Jardin des Dauphins,3737 Avenue des Dauphins,33005,Bordeaux,0556123456
-41,Aux Serpents Mystérieux,3838 Rue des Serpents Magiques,44005,Nantes,0247123456
-42,La Vallée des Dragons,3939 Place des Dragons,13008,Marseille,0499123456
-43,Le Royaume des Reptiles,4040 Avenue des Reptiles Magiques,75010,Paris,0147123456
-44,Les Animaux Enchantés,4141 Rue des Animaux Féeriques,69009,Lyon,0477123456
-45,La Forêt des Loups,4242 Place des Loups,31005,Toulouse,0569123456
-46,La Mer des Sirènes,4343 Avenue des Sirènes,33006,Bordeaux,0557123456
-47,Aux Animaux Fantastiques,4444 Rue des Animaux Fantastiques,44006,Nantes,0248123456
-48,La Vallée des Licornes,4545 Place des Licornes,13009,Marseille,0495123456
-49,Le Monde des Elfes,4646 Avenue des Animaux Elfiques,75011,Paris,0148123456
-50,Les Animaux Magiques,4747 Rue des Animaux Magiques,69010,Lyon,0476123456
+id,name,address,zipcode,city,phone,content
+1,Le Chien Heureux,123 Rue de la Patte,75001,Paris,0145623987,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+2,Chaton Câlin,456 Avenue des Félins,69001,Lyon,0478562143,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+3,La Griffe Dorée,789 Rue du Miaou,13001,Marseille,0497542136,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+4,Le Coin des Animaux,101 Place des Oiseaux,31000,Toulouse,0563789456,Votre destination pour les amoureux des oiseaux exotiques. Trouvez tout ce dont vous avez besoin pour vos plumes colorées.
+5,Aux Poils Doux,222 Boulevard des Chiens,44000,Nantes,0245698123,Une expérience unique pour les propriétaires de chiens. Découvrez des soins de qualité pour votre meilleur ami à quatre pattes.
+6,Le Nid d'Animaux,333 Rue des Lapins,33000,Bordeaux,0556789234,Un endroit chaleureux pour les amateurs de lapins. Explorez notre sélection de lapins adorables et d'accessoires adaptés.
+7,La Patte d'Or,444 Avenue des Rongeurs,69002,Lyon,0478654321,Le spécialiste des rongeurs. Des hamsters, gerbilles et souris attendent de devenir vos nouveaux amis à fourrure.
+8,Le Paradis des Animaux,555 Place des Chats,13002,Marseille,0497887654,Un monde de chats à découvrir. Nos félins attendent de vous montrer leur charme unique.
+9,Chien et Chat Compagnie,666 Rue des Chiots,75002,Paris,0145123678,Trouvez votre compagnon idéal parmi nos chiots adorables. Le bonheur est à portée de patte.
+10,La Ferme aux Animaux,777 Avenue des Poules,75003,Paris,0145236987,Un petit coin de campagne en ville. Explorez notre sélection d'animaux de ferme et d'accessoires rustiques.
+11,Le Royaume des Animaux,888 Rue des Poissons,75004,Paris,0145347896,Plongez dans le monde sous-marin de nos poissons exotiques. Une expérience aquatique inoubliable.
+12,Au Bonheur des Oiseaux,999 Place des Canaris,75005,Paris,0145458905,Découvrez la beauté des canaris et des oiseaux exotiques dans notre environnement unique.
+13,Le Monde des Reptiles,1010 Rue des Serpents,69003,Lyon,0478765432,Un voyage fascinant dans le monde des reptiles. Explorez notre collection de serpents et lézards.
+14,Les Petits Compagnons,1111 Avenue des Hamsters,13003,Marseille,0497678901,Des petits compagnons à adopter. Nos hamsters sont prêts à apporter de la joie dans votre vie.
+15,Le Refuge Animalier,1212 Boulevard des Tortues,44001,Nantes,0245123456,Un havre de paix pour les tortues. Découvrez nos tortues terrestres et aquatiques.
+16,Aux Ailes Colorées,1313 Rue des Perroquets,33001,Bordeaux,0556345678,Émerveillez-vous devant nos perroquets aux plumes chatoyantes. Une expérience vibrante de couleurs et de chants.
+17,Le Zoo Domestique,1414 Place des Fauves,31001,Toulouse,0563890123,Une expérience unique pour les amoureux des félins. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+18,La Grange aux Chats,1515 Avenue des Lynx,69004,Lyon,0478567890,Votre destination pour les amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+19,Les Amis à Poils,1616 Rue des Lapins,13004,Marseille,0497789012,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+20,Le Petit Zoo,1717 Place des Souris,75006,Paris,0145123456,Votre destination pour les amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+21,Le Coin des Nacs,1818 Rue des Nouveaux Animaux de Compagnie,69005,Lyon,0478678901,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+22,Le Jardin des Animaux,1919 Avenue des Oiseaux Exotiques,33002,Bordeaux,0556456789,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+23,Les Petits Rongeurs,2020 Place des Gerbilles,44002,Nantes,0245234567,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+24,Aux Plumes Enchantées,2121 Rue des Canards,13005,Marseille,0497890123,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+25,La Jungle Tropicale,2222 Avenue des Singes,75007,Paris,0145678901,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+26,La Cité des Poissons,2323 Rue des Poissons Exotiques,69006,Lyon,0478789012,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+27,Le Refuge des Animaux,2424 Place des Chiens Errants,31002,Toulouse,0563123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+28,La Ferme en Ville,2525 Avenue des Animaux de la Ferme,33003,Bordeaux,0556123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+29,Au Pays des Reptiles,2626 Rue des Reptiles Exotiques,44003,Nantes,0245123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+30,Le Monde des Insectes,2727 Place des Insectes,13006,Marseille,0497123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+31,Le Royaume des Oiseaux,2828 Avenue des Oiseaux Exotiques,75008,Paris,0145123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+32,La Vallée des Singes,2929 Rue des Singes Exotiques,69007,Lyon,0476123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+33,La Savane Africaine,3030 Place des Animaux de la Savane,31003,Toulouse,0567123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+34,Le Paradis des Chiens,3131 Avenue des Chiens Heureux,33004,Bordeaux,0557123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+35,Les Chats du Monde,3232 Rue des Chats Exotiques,44004,Nantes,0246123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+36,La Forêt Enchantée,3333 Place des Animaux Magiques,13007,Marseille,0498123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+37,Le Monde des Abysses,3434 Avenue des Animaux Marins,75009,Paris,0146123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+38,Les Animaux Mystiques,3535 Rue des Animaux Mythiques,69008,Lyon,0475123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+39,Le Refuge des Papillons,3636 Place des Papillons,31004,Toulouse,0568123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+40,Le Jardin des Dauphins,3737 Avenue des Dauphins,33005,Bordeaux,0556123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+41,Aux Serpents Mystérieux,3838 Rue des Serpents Magiques,44005,Nantes,0247123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+42,La Vallée des Dragons,3939 Place des Dragons,13008,Marseille,0499123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+43,Le Royaume des Reptiles,4040 Avenue des Reptiles Magiques,75010,Paris,0147123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+44,Les Animaux Enchantés,4141 Rue des Animaux Féeriques,69009,Lyon,0477123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+45,La Forêt des Loups,4242 Place des Loups,31005,Toulouse,0569123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+46,La Mer des Sirènes,4343 Avenue des Sirènes,33006,Bordeaux,0557123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+47,Aux Animaux Fantastiques,4444 Rue des Animaux Fantastiques,44006,Nantes,0248123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
+48,La Vallée des Licornes,4545 Place des Licornes,13009,Marseille,0495123456,La référence en matière de produits pour les félins. Offrez à votre chat le meilleur de la qualité.
+49,Le Monde des Elfes,4646 Avenue des Animaux Elfiques,75011,Paris,0148123456,Un lieu idéal pour les amoureux des chiens. Découvrez une variété de races et d'accessoires pour votre fidèle compagnon.
+50,Les Animaux Magiques,4747 Rue des Animaux Magiques,69010,Lyon,0476123456,Le paradis des amoureux des chats. Des chatons doux et joueurs vous attendent dans notre boutique.
