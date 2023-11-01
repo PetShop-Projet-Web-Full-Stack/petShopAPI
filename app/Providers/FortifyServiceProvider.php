@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -42,5 +45,32 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request): \Illuminate\Http\JsonResponse
+            {
+                return response()->json([
+                    'id'=>$request->user()->id,
+                    'name'=>$request->user()->name,
+                    'email'=>$request->user()->email,
+                    'created_at'=>$request->user()->created_at,
+                    'updated_at'=>$request->user()->updated_at,
+                ], Response::HTTP_OK);
+            }
+        });
+
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request): \Illuminate\Http\JsonResponse
+            {
+                return response()->json([
+                    'id'=>$request->user()->id,
+                    'name'=>$request->user()->name,
+                    'email'=>$request->user()->email,
+                    'created_at'=>$request->user()->created_at,
+                    'updated_at'=>$request->user()->updated_at,
+                ], Response::HTTP_OK);
+            }
+        });
+
     }
 }
