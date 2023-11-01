@@ -23,8 +23,8 @@ return new class extends Migration
         });
 
         Schema::table('animals', function (Blueprint $table) {
-            $table->foreignId('race_id')->after('date_of_birth')->constrained()->cascadeOnDelete();
-            $table->foreignId('pet_shop_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('races_id')->after('date_of_birth')->constrained()->cascadeOnDelete();
+            $table->foreignId('pet_shops_id')->constrained()->cascadeOnDelete();
             $table->foreignId('medias_id')->nullable()->constrained()->cascadeOnDelete();
         });
 
@@ -37,8 +37,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('animals', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('race_id');
-            $table->dropConstrainedForeignId('pet_shop_id');
+            $table->dropConstrainedForeignId('races_id');
+            $table->dropConstrainedForeignId('pet_shops_id');
             $table->dropConstrainedForeignId('medias_id');
         });
 

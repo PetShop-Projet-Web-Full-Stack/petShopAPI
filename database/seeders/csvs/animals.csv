@@ -1,4 +1,4 @@
-id,name,gender,date_of_birth,race_id,pet_shop_id,medias_id
+id,name,gender,date_of_birth,races_id,pet_shops_id,medias_id
 1,Buddy,Male,2019-05-12,1,23
 2,Luna,Female,2020-02-15,5,42
 3,Charlie,Male,2018-09-07,2,18

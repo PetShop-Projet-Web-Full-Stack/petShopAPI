@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Species;
-use App\Http\Requests\SpeciesRequest;
+use App\Http\Requests\SpeciesCreateRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class SpeciesController extends Controller
@@ -18,7 +18,7 @@ class SpeciesController extends Controller
         return Species::all();
     }
 
-    public function create(SpeciesRequest $request): Species
+    public function create(SpeciesCreateRequest $request): Species
     {
         return Species::create($request->toArray());
     }

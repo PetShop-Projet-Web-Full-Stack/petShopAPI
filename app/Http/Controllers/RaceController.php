@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Race;
-use App\Http\Requests\RaceRequest;
+use App\Http\Requests\RaceCreateRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class RaceController extends Controller
@@ -18,7 +18,7 @@ class RaceController extends Controller
         return Race::all();
     }
 
-    public function create(RaceRequest $request): Race
+    public function create(RaceCreateRequest $request): Race
     {
         return Race::create($request->toArray());
     }

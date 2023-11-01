@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SpeciesRequest extends FormRequest
+class RaceCreateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,8 @@ class SpeciesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'unique:races,name,NULL,id,species_id,' . $this->input('species_id')],
+            'species_id' => ['required', 'integer'],
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PetShopRequest extends FormRequest
+class AnimalCreateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,10 +15,10 @@ class PetShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'zipcode' => ['required', 'string', 'size:5'],
-            'city' => ['required', 'string'],
-            'phone' => ['required', 'string', 'max:15'],
+            'gender' => ['required', 'string', 'in:Male,Female'],
+            'date_of_birth' => ['required', 'date'],
+            'race_id' => ['required', 'integer'],
+            'pet_shop_id' => ['required', 'integer']
         ];
     }
 }
