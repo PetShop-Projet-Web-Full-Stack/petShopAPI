@@ -17,8 +17,8 @@ class AnimalCreateRequest extends FormRequest
             'name' => ['required', 'string'],
             'gender' => ['required', 'string', 'in:Male,Female'],
             'date_of_birth' => ['required', 'date'],
-            'races_id' => ['required', 'integer'],
-            'pet_shops_id' => ['required', 'integer']
+            'race_id' => ['required', 'integer'],
+            'pet_shop_id' => ['required', 'integer']
         ];
     }
 }

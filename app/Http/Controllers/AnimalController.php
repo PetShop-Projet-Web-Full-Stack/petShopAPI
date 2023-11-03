@@ -11,21 +11,21 @@ class AnimalController extends Controller
 {
     public function show(string $id): Animal
     {
-        return Animal::where('id', $id)->with('petShops')->firstOrFail();
+        return Animal::where('id', $id)->with('petShop')->firstOrFail();
     }
 
     public function index(AnimalIndexRequest $request): Collection
     {
-        $query = Animal::with(['races.species']);
+        $query = Animal::with(['race.species']);
 
         if ($request->has('race')) {
-            $query->whereHas('races', function ($q) use ($request) {
+            $query->whereHas('race', function ($q) use ($request) {
                 $q->where('name', $request->input('race'));
             });
         }
 
         if ($request->has('species')) {
-            $query->whereHas('races.species', function ($q) use ($request) {
+            $query->whereHas('race.species', function ($q) use ($request) {
                 $q->where('name', $request->input('species'));
             });
         }

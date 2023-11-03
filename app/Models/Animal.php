@@ -11,17 +11,17 @@ class Animal extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function races(): BelongsTo
+    public function race(): BelongsTo
     {
         return $this->belongsTo(Race::class);
     }
 
-    public function petShops(): BelongsTo
+    public function petShop(): BelongsTo
     {
         return $this->belongsTo(PetShop::class);
     }
 
-    public function medias(): BelongsTo
+    public function media(): BelongsTo
     {
         return $this->belongsTo(Media::class);
     }

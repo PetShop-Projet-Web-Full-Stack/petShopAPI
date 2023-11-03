@@ -11,6 +11,6 @@ class PetShop extends Model
 
     public function animals()
     {
-        return $this->hasMany(Animal::class, 'pet_shops_id');
+        return $this->hasMany(Animal::class);
     }
 }
