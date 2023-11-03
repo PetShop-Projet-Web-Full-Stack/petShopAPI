@@ -9,6 +9,7 @@ class AnimalsUser extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
+    public $incrementing = false;
 
     public function user(): BelongsTo
     {
