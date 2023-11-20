@@ -13,7 +13,7 @@ class AnimalController extends Controller
 {
     public function show(string $id): array
     {
-        $animal = Animal::where('id', $id)->with('petShop')->firstOrFail();
+        $animal = Animal::where('id', $id)->with(['petShop', 'race.species'])->firstOrFail();
         $response = new AnimalResponse($animal->toArray());
         return $response->toArray();
     }
