@@ -2,7 +2,8 @@
 
 namespace App\Responses;
 
-class AnimalResponse {
+class AnimalResponse
+{
     public function __construct(protected array $items)
     {
     }
