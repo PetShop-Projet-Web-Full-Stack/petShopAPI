@@ -41,7 +41,7 @@ Route::group(['prefix' => 'animals-user'], function () {
 // Group for auth routes
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/user', [UserController::class, 'getUser']);
+    Route::get('/user', [UserController::class, 'show']);
 
     // Create routes
     Route::post('/species', [SpeciesController::class, 'create']);
