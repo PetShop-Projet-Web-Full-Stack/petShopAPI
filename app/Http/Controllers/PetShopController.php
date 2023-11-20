@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\PetShop;
-use App\Http\Requests\PetShopCreateRequest;
+use App\Responses\PetShopResponse;
+use App\Responses\PetShopsResponse;
+use App\Responses\CreateRaceResponse;
 use App\Http\Requests\PetShopIndexRequest;
-use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\PetShopCreateRequest;
 
 class PetShopController extends Controller
 {
-    public function show(string $id): PetShop
+    public function show(string $id): array
     {
-        return PetShop::where('id', $id)->with('animals')->firstOrFail();
+        $petShop = PetShop::where('id', $id)->with('animals')->firstOrFail();
+        $response = new PetShopResponse($petShop->toArray());
+        return $response->toArray();
     }
 
-    public function index(PetShopIndexRequest $request): Collection
+    public function index(PetShopIndexRequest $request): array
     {
-        $query = PetShop::query();
+        $query = PetShop::with('animals');
 
         if ($request->has('city')) {
             $query->where('city', $request->input('city'));
@@ -26,11 +30,15 @@ class PetShopController extends Controller
             $query->where('zipcode', 'LIKE', '%' . $request->input('zipcode') . '%');
         }
 
-        return $query->get();
+        $petShops = $query->get();
+        $response = new PetShopsResponse($petShops->toArray());
+        return $response->toArray();
     }
 
-    public function create(PetShopCreateRequest $request): PetShop
+    public function create(PetShopCreateRequest $request): array
     {
-        return PetShop::create($request->toArray());
+        $petShop = PetShop::create($request->toArray());
+        $response = new CreateRaceResponse($petShop->toArray());
+        return $response->toArray();
     }
 }

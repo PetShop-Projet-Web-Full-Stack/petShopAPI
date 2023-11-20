@@ -3,23 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Race;
+use App\Responses\RaceResponse;
+use App\Responses\RacesResponse;
+use App\Responses\CreateRaceResponse;
 use App\Http\Requests\RaceCreateRequest;
-use Illuminate\Database\Eloquent\Collection;
 
 class RaceController extends Controller
 {
-    public function show(string $id): Race
+    public function show(string $id): array
     {
-        return Race::findOrFail($id);
+        $race = Race::findOrFail($id)->with('species')->first();
+        $response = new RaceResponse($race->toArray());
+        return $response->toArray();
     }
 
-    public function index(): Collection
+    public function index(): array
     {
-        return Race::all();
+        $race = Race::all();
+        $response = new RacesResponse($race->toArray());
+        return $response->toArray();
     }
 
-    public function create(RaceCreateRequest $request): Race
+    public function create(RaceCreateRequest $request): array
     {
-        return Race::create($request->toArray());
+        $race = Race::create($request->toArray());
+        $response = new CreateRaceResponse($race->toArray());
+        return $response->toArray();
     }
 }
