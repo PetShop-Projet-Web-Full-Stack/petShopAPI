@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RaceController;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalsUserController;
 use App\Http\Controllers\PetShopController;
+use App\Http\Controllers\RaceController;
 use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 // Route for species
 Route::group(['prefix' => 'species'], function () {
@@ -40,10 +40,8 @@ Route::group(['prefix' => 'animals-user'], function () {
 
 // Group for auth routes
 Route::middleware('auth:sanctum')->group(function () {
-    // Route for user
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+
+    Route::get('/user', [UserController::class, 'show']);
 
     // Create routes
     Route::post('/species', [SpeciesController::class, 'create']);
