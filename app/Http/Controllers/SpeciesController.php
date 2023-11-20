@@ -3,23 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Species;
+use App\Responses\SpeciesResponse;
+use App\Responses\CreateSpeciesResponse;
+use App\Responses\SingularSpeciesResponse;
 use App\Http\Requests\SpeciesCreateRequest;
-use Illuminate\Database\Eloquent\Collection;
 
 class SpeciesController extends Controller
 {
-    public function show(string $id): Species
+    public function show(string $id): array
     {
-        return Species::findOrFail($id);
+        $species = Species::findOrFail($id);
+        $response = new SingularSpeciesResponse($species->toArray());
+        return $response->toArray();
     }
 
-    public function index(): Collection
+    public function index(): array
     {
-        return Species::all();
+        $species = Species::all();
+        $response = new SpeciesResponse($species->toArray());
+        return $response->toArray();
     }
 
-    public function create(SpeciesCreateRequest $request): Species
+    public function create(SpeciesCreateRequest $request): array
     {
-        return Species::create($request->toArray());
+        $species = Species::create($request->toArray());
+        $response = new CreateSpeciesResponse($species->toArray());
+        return $response->toArray();
     }
 }

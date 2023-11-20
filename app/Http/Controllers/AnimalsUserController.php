@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnimalsUser;
+use App\Responses\AnimalsUserResponse;
 use App\Http\Requests\AnimalsUserRequest;
-use Illuminate\Database\Eloquent\Collection;
+use App\Responses\CreateAnimalsUserResponse;
 
 class AnimalsUserController extends Controller
 {
-    public function index(): Collection
+    public function index(): array
     {
-        return AnimalsUser::where('user_id', auth()->user()->id)->with('animal')->get();
+        $animalsUser = AnimalsUser::where('user_id', auth()->user()->id)->with('animal')->get();
+        $response = new AnimalsUserResponse($animalsUser->toArray());
+        return $response->toArray();
     }
 
-    public function create(AnimalsUserRequest $request): AnimalsUser
+    public function create(AnimalsUserRequest $request): array
     {
-        return AnimalsUser::create(
+        $animal = AnimalsUser::create(
             [
                 'user_id' => auth()->user()->id,
                 'animal_id' => $request->id,
             ]
         );
+
+        $response = new CreateAnimalsUserResponse($animal->toArray());
+        return $response->toArray();
     }
 }

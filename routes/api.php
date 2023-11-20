@@ -1,54 +1,68 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RaceController;
+use App\Http\Controllers\UserController;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\AnimalsUserController;
 use App\Http\Controllers\PetShopController;
-use App\Http\Controllers\RaceController;
 use App\Http\Controllers\SpeciesController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalsUserController;
 
 // Route for species
 Route::group(['prefix' => 'species'], function () {
-    Route::get('/{id}', [SpeciesController::class, 'show']);
-    Route::get('/', [SpeciesController::class, 'index']);
+    Route::get('/{id}', [SpeciesController::class, 'show'])
+        ->name('species.show');
+    Route::get('/', [SpeciesController::class, 'index'])
+        ->name('species.index');
 });
 
 // Route for animal races
 Route::group(['prefix' => 'races'], function () {
-    Route::get('/{id}', [RaceController::class, 'show']);
-    Route::get('/', [RaceController::class, 'index']);
+    Route::get('/{id}', [RaceController::class, 'show'])
+        ->name('races.show');
+    Route::get('/', [RaceController::class, 'index'])
+        ->name('races.index');
 });
 
 // Route for pet shops
 Route::group(['prefix' => 'pet-shops'], function () {
-    Route::get('/{id}', [PetShopController::class, 'show']);
-    Route::get('/', [PetShopController::class, 'index']);
+    Route::get('/{id}', [PetShopController::class, 'show'])
+        ->name('pet-shops.show');
+    Route::get('/', [PetShopController::class, 'index'])
+        ->name('pet-shops.index');
 });
 
 // Route for animals
 Route::group(['prefix' => 'animals'], function () {
-    Route::get('/{id}', [AnimalController::class, 'show']);
-    Route::get('/', [AnimalController::class, 'index']);
+    Route::get('/{id}', [AnimalController::class, 'show'])
+        ->name('animals.show');
+    Route::get('/', [AnimalController::class, 'index'])
+        ->name('animals.index');
 });
 
 // Route for favorites animals
 Route::group(['prefix' => 'animals-user'], function () {
-    Route::get('/', [AnimalsUserController::class, 'index']);
+    Route::get('/', [AnimalsUserController::class, 'index'])
+        ->name('animals-user.index');
 });
 
 // Group for auth routes
 Route::middleware('auth:sanctum')->group(function () {
-
-    Route::get('/user', [UserController::class, 'show']);
+    Route::get('/user', [UserController::class, 'show'])
+        ->name('users.show');
 
     // Create routes
-    Route::post('/species', [SpeciesController::class, 'create']);
-    Route::post('/races', [RaceController::class, 'create']);
-    Route::post('/pet-shops', [PetShopController::class, 'create']);
-    Route::post('/animals', [AnimalController::class, 'create']);
-    Route::post('/animals-user', [AnimalsUserController::class, 'create']);
+    Route::post('/species', [SpeciesController::class, 'create'])
+        ->name('species.create');
+    Route::post('/races', [RaceController::class, 'create'])
+        ->name('races.create');
+    Route::post('/pet-shops', [PetShopController::class, 'create'])
+        ->name('pet-shops.create');
+    Route::post('/animals', [AnimalController::class, 'create'])
+        ->name('animals.create');
+    Route::post('/animals-user', [AnimalsUserController::class, 'create'])
+        ->name('animals-user.create');
 
     // Route for reset password
     Route::get('/reset-password/', [ResetUserPassword::class, 'reset'])

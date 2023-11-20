@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Responses\AnimalResponse;
+use App\Responses\AnimalsResponse;
+use App\Responses\CreateAnimalResponse;
 use App\Http\Requests\AnimalIndexRequest;
 use App\Http\Requests\AnimalCreateRequest;
-use Illuminate\Database\Eloquent\Collection;
 
 class AnimalController extends Controller
 {
-    public function show(string $id): Animal
+    public function show(string $id): array
     {
-        return Animal::where('id', $id)->with('petShop')->firstOrFail();
+        $animal = Animal::where('id', $id)->with(['petShop', 'race.species'])->firstOrFail();
+        $response = new AnimalResponse($animal->toArray());
+        return $response->toArray();
     }
 
-    public function index(AnimalIndexRequest $request): Collection
+    public function index(AnimalIndexRequest $request): array
     {
         $query = Animal::with(['race.species']);
 
@@ -37,11 +41,15 @@ class AnimalController extends Controller
             ]);
         }
 
-        return $query->get();
+        $animals = $query->get();
+        $reponse = new AnimalsResponse($animals->toArray());
+        return $reponse->toArray();
     }
 
-    public function create(AnimalCreateRequest $request): Animal
+    public function create(AnimalCreateRequest $request): array
     {
-        return Animal::create($request->toArray());
+        $animal = Animal::create($request->toArray());
+        $response = new CreateAnimalResponse($animal->toArray());
+        return $response->toArray();
     }
 }
