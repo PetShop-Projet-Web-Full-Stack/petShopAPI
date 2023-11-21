@@ -14,7 +14,7 @@ class PetShopsResponse
             $item['_links'] = $this->getItemLinks($item);
         }
 
-        $this->items['_links'] = $this->getLinks();
+        $this->items[]['_links'] = $this->getLinks();
 
         return $this->items;
     }

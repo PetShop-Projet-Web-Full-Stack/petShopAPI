@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PetShop;
 use App\Responses\PetShopResponse;
 use App\Responses\PetShopsResponse;
-use App\Responses\CreateRaceResponse;
+use App\Responses\CreatePetShopResponse;
 use App\Http\Requests\PetShopIndexRequest;
 use App\Http\Requests\PetShopCreateRequest;
 
@@ -38,7 +38,7 @@ class PetShopController extends Controller
     public function create(PetShopCreateRequest $request): array
     {
         $petShop = PetShop::create($request->toArray());
-        $response = new CreateRaceResponse($petShop->toArray());
+        $response = new CreatePetShopResponse($petShop->toArray());
         return $response->toArray();
     }
 }
