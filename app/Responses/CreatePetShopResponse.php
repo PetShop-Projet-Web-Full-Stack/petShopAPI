@@ -2,7 +2,7 @@
 
 namespace App\Responses;
 
-class CreateRaceResponse
+class CreatePetShopResponse
 {
     public function __construct(protected array $items)
     {
@@ -19,7 +19,7 @@ class CreateRaceResponse
     {
         return [
             'self' => [
-                'href' => route('pet-shop.show', ['id' => $this->items['id']])
+                'href' => route('pet-shops.show', ['id' => $this->items['id']])
             ]
         ];
     }

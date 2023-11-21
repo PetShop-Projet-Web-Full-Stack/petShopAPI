@@ -14,7 +14,7 @@ class AnimalsUserResponse
             $item['animal']['_links'] = $this->getAnimalItemLinks($item);
         }
 
-        $this->items['_links'] = $this->getLinks();
+        $this->items[]['_links'] = $this->getLinks();
 
         return $this->items;
     }
