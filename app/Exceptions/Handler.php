@@ -40,9 +40,9 @@ class Handler extends ExceptionHandler
     {
         if ($request->wantsJson()) {
 
-            $statusCode = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 500;
+//            $statusCode = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 500;
 
-            return response()->json(['message' => $e->getMessage()], $statusCode);
+//            return response()->json(['message' => $e->getMessage()], $statusCode);
         }
         return parent::render($request, $e);
     }

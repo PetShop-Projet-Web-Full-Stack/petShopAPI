@@ -35,7 +35,9 @@ class User extends Authenticatable
         'remember_token',
         'email_verified_at',
         'two_factor_secret',
-        'two_factor_recovery_codes'
+        'two_factor_recovery_codes',
+        'is_admin',
+        'status',
     ];
 
     protected $casts = [

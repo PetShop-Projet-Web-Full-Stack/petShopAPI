@@ -59,6 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'show'])
         ->name('users.show');
 
+    Route::get('/user', [UserController::class, 'show']);
+    Route::delete('/user', [UserController::class, 'softDestroy'])->middleware('remove-user-scope');
+
     // Create routes
     Route::post('/species', [SpeciesController::class, 'create'])
         ->name('species.create');
