@@ -58,13 +58,14 @@ Route::group(['prefix' => "questions"], function () {
 });
 
 // Group for auth routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [UserController::class, 'show'])
-        ->name('users.show');
+Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
 
+    // get user logged
     Route::get('/user', [UserController::class, 'showMe']);
 
+    // Update user data
     Route::group(['middleware' => [AdminOrSelfUser::class]], function () {
+        // Remove user data
         Route::delete('/user', [UserController::class, 'delete']);
     });
 
@@ -82,6 +83,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route for reset password
     Route::get('/reset-password/', [ResetUserPassword::class, 'reset'])
-        ->middleware(['guest'])
+        ->middleware('guest')
         ->name('password.reset');
 });
