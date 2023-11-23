@@ -9,6 +9,9 @@ use App\Http\Controllers\PetShopController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsUserController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminOrSelfUser;
+use Illuminate\Support\Facades\Route;
 
 // Route for species
 Route::group(['prefix' => 'species'], function () {
@@ -59,8 +62,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'show'])
         ->name('users.show');
 
-    Route::get('/user', [UserController::class, 'show']);
-    Route::delete('/user', [UserController::class, 'softDestroy'])->middleware('remove-user-scope');
+    Route::get('/user', [UserController::class, 'showMe']);
+
+    Route::group(['middleware' => [AdminOrSelfUser::class]], function () {
+        Route::delete('/user', [UserController::class, 'delete']);
+    });
 
     // Create routes
     Route::post('/species', [SpeciesController::class, 'create'])

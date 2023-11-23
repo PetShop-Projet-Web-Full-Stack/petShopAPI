@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RemoveUserScope
+class AdminOrSelfUser
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class RemoveUserScope
     public function handle(Request $request, Closure $next): Response
     {
         // Check if user id == id in request
-        if (auth()->user()->id != $request->id) {
-            if (auth()->user()->is_admin == 0) {
-                return response()->json(['message' => 'Unauthorized'], 401);
-            }
+        if (auth()->user()->id != $request->id && auth()->user()->is_admin == 0) {
+            return response()
+                ->json(['message' => 'Vous ne disposez pas des droits nécessaires pour effectuer cette action.'],
+                    Response::HTTP_UNAUTHORIZED);
         }
         return $next($request);
     }
