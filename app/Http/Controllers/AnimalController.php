@@ -42,8 +42,8 @@ class AnimalController extends Controller
         }
 
         $animals = $query->get();
-        $reponse = new AnimalsResponse($animals->toArray());
-        return $reponse->toArray();
+        $response = new AnimalsResponse($animals->toArray());
+        return $response->toArray();
     }
 
     public function create(AnimalCreateRequest $request): array
