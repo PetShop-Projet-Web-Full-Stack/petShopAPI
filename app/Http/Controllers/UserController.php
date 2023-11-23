@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -44,8 +43,6 @@ class UserController extends Controller
 
         // Update user
         $user->save();
-        // TODO : delete token of user is not working
-        //$user->currentAccessToken()->delete();
 
         return response()->json([], 204);
     }
