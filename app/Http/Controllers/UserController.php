@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserSoftDestroyRequest;
 use App\Models\User;
+use App\Responses\UserResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function showMe(Request $request)
     {
-        $user = $request->user();
+        $user = auth()->user();
         $response = new UserResponse($user->toArray());
         return $response->toArray();
     }
