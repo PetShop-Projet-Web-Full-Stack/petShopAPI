@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\PetShop;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Animal extends Model
 {
     protected $guarded = [];
-    public $timestamps = false;
 
     public function race(): BelongsTo
     {
