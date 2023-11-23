@@ -7,6 +7,7 @@ use Database\Seeders\RaceSeeder;
 use Database\Seeders\AnimalSeeder;
 use Database\Seeders\PetShopSeeder;
 use Database\Seeders\SpeciesSeeder;
+use Database\Seeders\QuestionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
             RaceSeeder::class,
             PetShopSeeder::class,
             AnimalSeeder::class,
+            QuestionSeeder::class,
         ]);
-
     }
 }

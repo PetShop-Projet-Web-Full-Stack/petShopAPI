@@ -8,6 +8,7 @@ use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\PetShopController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsUserController;
+use App\Http\Controllers\QuestionController;
 
 // Route for species
 Route::group(['prefix' => 'species'], function () {
@@ -45,6 +46,12 @@ Route::group(['prefix' => 'animals'], function () {
 Route::group(['prefix' => 'animals-user'], function () {
     Route::get('/', [AnimalsUserController::class, 'index'])
         ->name('animals-user.index');
+});
+
+// Routes for questions
+Route::group(['prefix' => "questions"], function () {
+    Route::get('/', [QuestionController::class, 'index'])
+        ->name('questions.index');
 });
 
 // Group for auth routes
