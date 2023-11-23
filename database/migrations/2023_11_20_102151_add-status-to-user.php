@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('status')->default(1);
+            $table->enum('status', [0, 1])
+                ->default(1)
+                ->after('remember_token')
+                ->comment('0: inactive, 1: active');
         });
     }
 
