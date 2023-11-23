@@ -1,14 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RaceController;
-use App\Http\Controllers\UserController;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\PetShopController;
-use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsUserController;
+use App\Http\Controllers\PetShopController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\RaceController;
+use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminOrSelfUser;
 use Illuminate\Support\Facades\Route;
