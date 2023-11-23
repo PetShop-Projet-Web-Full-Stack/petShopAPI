@@ -18,9 +18,4 @@ class UserController extends Controller
         $response = new UserResponse($user->toArray());
         return $response->toArray();
     }
-
-    public function destroySelf()
-    {
-        auth()->user->delete();
-    }
 }
