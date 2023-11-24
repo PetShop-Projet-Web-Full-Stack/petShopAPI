@@ -8,6 +8,7 @@ use App\Responses\UserResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -36,6 +37,17 @@ class UserController extends Controller
 
         // get the user
         $user = User::where('id', $request->id)->first();
+
+        // Check if user is admin
+        if ($user->is_admin) {
+            return response()->json(['message' => 'vous ne pouvez pas supprimer un administrateur'], Response::HTTP_FORBIDDEN);
+        }
+
+        // Check if user is already deleted
+        if ($user->status == 0) {
+            return response()->json(['message' => 'utilisateur déjà supprimé'], Response::HTTP_NO_CONTENT);
+        }
+
 
         $user->status = '0';
         $user->name = 'deleted_' . fake()->name();
