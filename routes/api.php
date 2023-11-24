@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RaceController;
-use App\Http\Controllers\UserController;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\PetShopController;
-use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsUserController;
+use App\Http\Controllers\PetShopController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\RaceController;
+use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminOrSelfUser;
+use Illuminate\Support\Facades\Route;
 
 // Route for species
 Route::group(['prefix' => 'species'], function () {
@@ -55,9 +56,16 @@ Route::group(['prefix' => "questions"], function () {
 });
 
 // Group for auth routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [UserController::class, 'show'])
-        ->name('users.show');
+Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
+
+    // get user logged
+    Route::get('/user', [UserController::class, 'showMe']);
+
+    // Update user data
+    Route::group(['middleware' => [AdminOrSelfUser::class]], function () {
+        // Remove user data
+        Route::delete('/user', [UserController::class, 'delete']);
+    });
 
     // Create routes
     Route::post('/species', [SpeciesController::class, 'create'])
@@ -73,6 +81,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route for reset password
     Route::get('/reset-password/', [ResetUserPassword::class, 'reset'])
-        ->middleware(['guest'])
+        ->middleware('guest')
         ->name('password.reset');
 });
