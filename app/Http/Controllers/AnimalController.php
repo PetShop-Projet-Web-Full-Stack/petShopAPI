@@ -20,7 +20,13 @@ class AnimalController extends Controller
 
     public function index(AnimalIndexRequest $request): array
     {
-        $query = Animal::with(['race.species']);
+        $query = Animal::with(['race.species', 'animalsUsers']);
+
+        if (auth()->check()) {
+            $query->with(['animalsUsers' => function ($q) {
+                $q->where('user_id', auth()->user()->id);
+            }]);
+        }
 
         if ($request->has('race')) {
             $query->whereHas('race', function ($q) use ($request) {
