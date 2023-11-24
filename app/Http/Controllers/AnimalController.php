@@ -13,14 +13,25 @@ class AnimalController extends Controller
 {
     public function show(string $id): array
     {
-        $animal = Animal::where('id', $id)->with(['petShop', 'race.species'])->firstOrFail();
-        $response = new AnimalResponse($animal->toArray());
+        $animal = Animal::where('id', $id)->with(['petShop', 'race.species']);
+        if (auth()->check()) {
+            $animal->with(['animalsUsers' => function ($q) {
+                $q->where('user_id', auth()->user()->id);
+            }]);
+        }
+        $response = new AnimalResponse($animal->firstOrFail()->toArray());
         return $response->toArray();
     }
 
     public function index(AnimalIndexRequest $request): array
     {
-        $query = Animal::with(['race.species']);
+        $query = Animal::with(['race.species', 'animalsUsers']);
+
+        if (auth()->check()) {
+            $query->with(['animalsUsers' => function ($q) {
+                $q->where('user_id', auth()->user()->id);
+            }]);
+        }
 
         if ($request->has('race')) {
             $query->whereHas('race', function ($q) use ($request) {

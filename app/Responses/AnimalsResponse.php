@@ -14,6 +14,12 @@ class AnimalsResponse
             $item['_links'] = $this->getItemLinks($item);
             $item['race']['_links'] = $this->getRaceItemsLinks($item);
             $item['race']['species']['_links'] = $this->getSpeciesItemsLinks($item);
+
+            $item['is_favorite'] = false;
+            if (auth()->check() && auth()->user()->id === data_get($item, 'animals_users.0.user_id')) {
+                $item['is_favorite'] = true;
+            }
+            unset($item['animals_users']);
         }
 
         $this->items[]['_links'] = $this->getLinks();
