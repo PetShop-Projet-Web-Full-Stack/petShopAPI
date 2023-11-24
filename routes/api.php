@@ -43,12 +43,6 @@ Route::group(['prefix' => 'animals'], function () {
         ->name('animals.index');
 });
 
-// Route for favorites animals
-Route::group(['prefix' => 'animals-user'], function () {
-    Route::get('/', [AnimalsUserController::class, 'index'])
-        ->name('animals-user.index');
-});
-
 // Routes for questions
 Route::group(['prefix' => "questions"], function () {
     Route::get('/', [QuestionController::class, 'index'])
@@ -76,6 +70,8 @@ Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
         ->name('pet-shops.create');
     Route::post('/animals', [AnimalController::class, 'create'])
         ->name('animals.create');
+    Route::get('/animals-user', [AnimalsUserController::class, 'index'])
+        ->name('animals-user.index');
     Route::post('/animals-user', [AnimalsUserController::class, 'create'])
         ->name('animals-user.create');
 

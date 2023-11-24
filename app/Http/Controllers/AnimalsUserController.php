@@ -11,7 +11,7 @@ class AnimalsUserController extends Controller
 {
     public function index(): array
     {
-        $animalsUser = AnimalsUser::where('user_id', auth()->user()->id)->with('animal')->get();
+        $animalsUser = AnimalsUser::where('user_id', auth()->user()->id)->with(['animal', 'animal.petShop', 'animal.race'])->get();
         $response = new AnimalsUserResponse($animalsUser->toArray());
         return $response->toArray();
     }
