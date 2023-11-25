@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('animals', function (Blueprint $table) {
-            $table->enum('activity_level', ['Haut', 'Medium', 'Low']);
+            $table->enum('activity_level', ['High', 'Medium', 'Low']);
             $table->enum('living_space', ['Apartment', 'House with Yard', 'Farm']);
             $table->enum('size', ['Small', 'Medium', 'Large']);
             $table->enum('socialization', ['High', 'Medium', 'Low']);
