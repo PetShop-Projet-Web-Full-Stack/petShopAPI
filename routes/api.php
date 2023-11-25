@@ -55,6 +55,10 @@ Route::group(['prefix' => "questions"], function () {
         ->name('questions.index');
 });
 
+Route::post('/responses', [QuestionController::class, 'getScore'])
+    ->name('questions.score');
+
+
 // Group for auth routes
 Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
 
