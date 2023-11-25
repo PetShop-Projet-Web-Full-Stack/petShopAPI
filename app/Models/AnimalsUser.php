@@ -9,6 +9,7 @@ class AnimalsUser extends Model
 {
     protected $guarded = [];
     public $incrementing = false;
+    protected $primaryKey = 'animal_id';
 
     public function user(): BelongsTo
     {

@@ -59,6 +59,10 @@ Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
     Route::group(['middleware' => [AdminOrSelfUser::class]], function () {
         // Remove user data
         Route::delete('/user', [UserController::class, 'delete']);
+        Route::delete('/species/{id}', [SpeciesController::class, 'delete']);
+        Route::delete('/races/{id}', [RaceController::class, 'delete']);
+        Route::delete('/pet-shops/{id}', [PetShopController::class, 'delete']);
+        Route::delete('/animals/{id}', [AnimalController::class, 'delete']);
     });
 
     // Create routes
@@ -73,6 +77,8 @@ Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
     Route::get('/animals-user', [AnimalsUserController::class, 'index'])
         ->name('animals-user.index');
     Route::post('/animals-user', [AnimalsUserController::class, 'create'])
+        ->name('animals-user.create');
+    Route::delete('/animals-user/{id}', [AnimalsUserController::class, 'delete'])
         ->name('animals-user.create');
 
     // Route for reset password
