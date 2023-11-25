@@ -34,7 +34,6 @@ class UserController extends Controller
      */
     public function delete(UserSoftDestroyRequest $request)
     {
-
         // get the user
         $user = User::where('id', $request->id)->first();
 
@@ -47,7 +46,6 @@ class UserController extends Controller
         if ($user->status == 0) {
             return response()->json(['message' => 'utilisateur déjà supprimé'], Response::HTTP_NO_CONTENT);
         }
-
 
         $user->status = '0';
         $user->name = 'deleted_' . fake()->name();

@@ -12,14 +12,14 @@ class SpeciesController extends Controller
 {
     public function show(string $id): array
     {
-        $species = Species::findOrFail($id);
+        $species = Species::findOrFail($id)->where('status', 1);
         $response = new SingularSpeciesResponse($species->toArray());
         return $response->toArray();
     }
 
     public function index(): array
     {
-        $species = Species::all();
+        $species = Species::all()->where('status', 1);
         $response = new SpeciesResponse($species->toArray());
         return $response->toArray();
     }
@@ -29,5 +29,13 @@ class SpeciesController extends Controller
         $species = Species::create($request->toArray());
         $response = new CreateSpeciesResponse($species->toArray());
         return $response->toArray();
+    }
+
+    public function delete(string $id): array
+    {
+        $species = Species::findOrFail($id);
+        $species->status = 0;
+        $species->save();
+        return [];
     }
 }

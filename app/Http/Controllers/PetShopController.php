@@ -13,14 +13,14 @@ class PetShopController extends Controller
 {
     public function show(string $id): array
     {
-        $petShop = PetShop::where('id', $id)->with('animals')->firstOrFail();
+        $petShop = PetShop::where('id', $id)->where('status', 1)->with('animals')->firstOrFail();
         $response = new PetShopResponse($petShop->toArray());
         return $response->toArray();
     }
 
     public function index(PetShopIndexRequest $request): array
     {
-        $query = PetShop::with('animals');
+        $query = PetShop::with('animals')->where('status', 1);
 
         if ($request->has('city')) {
             $query->where('city', $request->input('city'));
@@ -40,5 +40,13 @@ class PetShopController extends Controller
         $petShop = PetShop::create($request->toArray());
         $response = new CreatePetShopResponse($petShop->toArray());
         return $response->toArray();
+    }
+
+    public function delete(string $id): array
+    {
+        $petShop = PetShop::findOrFail($id);
+        $petShop->status = 0;
+        $petShop->save();
+        return [];
     }
 }

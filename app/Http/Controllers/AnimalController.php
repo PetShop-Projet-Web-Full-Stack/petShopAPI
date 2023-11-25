@@ -13,7 +13,7 @@ class AnimalController extends Controller
 {
     public function show(string $id): array
     {
-        $animal = Animal::where('id', $id)->with(['petShop', 'race.species']);
+        $animal = Animal::where('id', $id)->where('status', 1)->with(['petShop', 'race.species']);
         if (auth()->check()) {
             $animal->with(['animalsUsers' => function ($q) {
                 $q->where('user_id', auth()->user()->id);
@@ -25,7 +25,7 @@ class AnimalController extends Controller
 
     public function index(AnimalIndexRequest $request): array
     {
-        $query = Animal::with(['race.species', 'animalsUsers']);
+        $query = Animal::with(['race.species', 'animalsUsers'])->where('status', 1);
 
         if (auth()->check()) {
             $query->with(['animalsUsers' => function ($q) {
@@ -62,5 +62,13 @@ class AnimalController extends Controller
         $animal = Animal::create($request->toArray());
         $response = new CreateAnimalResponse($animal->toArray());
         return $response->toArray();
+    }
+
+    public function delete(string $id): array
+    {
+        $animal = Animal::where('id', $id)->firstOrFail();
+        $animal->status = 0;
+        $animal->save();
+        return [];
     }
 }

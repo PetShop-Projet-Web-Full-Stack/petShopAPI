@@ -28,4 +28,11 @@ class AnimalsUserController extends Controller
         $response = new CreateAnimalsUserResponse($animal->toArray());
         return $response->toArray();
     }
+
+    public function delete(string $id): array
+    {
+        $animal = AnimalsUser::where('user_id', auth()->user()->id)->where('animal_id', $id)->firstOrFail();
+        $animal->delete();
+        return [];
+    }
 }
