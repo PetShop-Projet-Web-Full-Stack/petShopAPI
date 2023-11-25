@@ -14,7 +14,9 @@ class QuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ids' => 'required|array',
+            'answers' => ['required', 'array'],
+            'answers.*.id_question' => ['required', 'integer'],
+            'answers.*.answer' => ['required', 'string']
         ];
     }
 }
