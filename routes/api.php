@@ -47,11 +47,9 @@ Route::group(['prefix' => 'animals'], function () {
 Route::group(['prefix' => "questions"], function () {
     Route::get('/', [QuestionController::class, 'index'])
         ->name('questions.index');
+    Route::post('/answers', [QuestionController::class, 'answers'])
+        ->name('questions.answers');
 });
-
-Route::post('/responses', [QuestionController::class, 'getScore'])
-    ->name('questions.score');
-
 
 // Group for auth routes
 Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
@@ -83,7 +81,7 @@ Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
     Route::post('/animals-user', [AnimalsUserController::class, 'create'])
         ->name('animals-user.create');
     Route::delete('/animals-user/{id}', [AnimalsUserController::class, 'delete'])
-        ->name('animals-user.create');
+        ->name('animals-user.delete');
 
     // Route for reset password
     Route::get('/reset-password/', [ResetUserPassword::class, 'reset'])

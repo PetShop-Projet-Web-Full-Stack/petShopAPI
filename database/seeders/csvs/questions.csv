@@ -1,10 +1,8 @@
 id,content,responses,animals_column
-1,Avez-vous un jardin ou un espace extérieur pour un animal plus grand ?,Oui/Non,living_space
-2,Aimez-vous les gros animaux ?,Oui/Non,size
-3,Êtes-vous une personne active qui aime l'exercice régulier ?,Peu/Moderement/Beaucoup,activity_level
-4,Combien d'heures par jour pouvez-vous consacrer à prendre soin de votre animal ?,1-2 heures/3-5 heures/Plus de 5 heures,grooming_needs
-5,Préférez-vous un animal adapté aux familles avec de jeunes enfants ?,Oui/Non,socialization
-6,Est-ce que vous appréciez les animaux qui font beaucoup de bruit ?,Oui/Non,noise_level
-7,Est-ce que vous voulez un animal facile à éduquer ?,Oui/Non,trainability
-8,Sortez-vous beaucoup avec vos animaux ?,Peu\Moderement/Beaucoup,outdoor_activity
-9,Aimez-vous les animaux sociables ?,Oui/Non,family_friendly
+1,Vivez-vous dans une maison ou dans un appartement ?,Maison/Appartement,living_space
+2,Quelle taille d'animaux aimez-vous ? ?,Petit/Medium/Large,size
+3,Êtes-vous une personne active qui aime l'exercice régulier ?,Haut/Medium/Bas,activity_level
+4,A quelle fréquence pouvez-vous consacrer du temps à prendre soin de votre animal ?,Haut/Medium/Bas,grooming_needs
+5,Quel niveau de bruit supportez-vous pour un animal ?,Haut/Medium/Bas,noise_level
+6,Avec quelle facilité vouslez-vous votre animal à obéir ?,Haut/Medium/Bas,trainability
+7,Sortez-vous beaucoup avec vos animaux ?,Haut/Medium/Bas,outdoor_activity
