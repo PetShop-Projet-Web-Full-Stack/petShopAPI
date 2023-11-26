@@ -23,6 +23,13 @@ class RacesTest extends MainTest
         $this->createRace($species);
     }
 
+    public function testDeleteSpecies()
+    {
+        $species = $this->createSpecies();
+        $race = $this->createRace($species);
+        $this->testDeleteEntity('races', $race);
+    }
+
     protected function createSpecies()
     {
         $species = ['name' => 'Species test'];
