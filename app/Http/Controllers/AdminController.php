@@ -13,14 +13,14 @@ class AdminController extends Controller
         ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
         ['name' => 'gender', 'type' => 'enum', 'label' => 'Gender', 'options' => ['Male', 'Female']],
         ['name' => 'date_of_birth', 'type' => 'date', 'label' => 'Date of Birth'],
-        ['name' => 'activity_level', 'type' => 'enum', 'label' => 'Activity Level', 'options' => ['High', 'Medium', 'Low']],
-        ['name' => 'living_space', 'type' => 'enum', 'label' => 'Living Space', 'options' => ['Apartment', 'House with Yard', 'Farm']],
-        ['name' => 'size', 'type' => 'enum', 'label' => 'Size', 'options' => ['Small', 'Medium', 'Large']],
-        ['name' => 'socialization', 'type' => 'enum', 'label' => 'Socialization', 'options' => ['High', 'Medium', 'Low']],
-        ['name' => 'grooming_needs', 'type' => 'enum', 'label' => 'Grooming Needs', 'options' => ['High', 'Medium', 'Low']],
-        ['name' => 'noise_level', 'type' => 'enum', 'label' => 'Noise Level', 'options' => ['High', 'Medium', 'Low']],
-        ['name' => 'trainability', 'type' => 'enum', 'label' => 'Trainability', 'options' => ['High', 'Medium', 'Low']],
-        ['name' => 'outdoor_activity', 'type' => 'enum', 'label' => 'Outdoor Activity', 'options' => ['High', 'Medium', 'Low']],
+        ['name' => 'activity_level', 'type' => 'enum', 'label' => 'Activity Level', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'living_space', 'type' => 'enum', 'label' => 'Living Space', 'options' => ['Appartement', 'Maison']],
+        ['name' => 'size', 'type' => 'enum', 'label' => 'Size', 'options' => ['Petit', 'Medium', 'Large']],
+        ['name' => 'socialization', 'type' => 'enum', 'label' => 'Socialization', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'grooming_needs', 'type' => 'enum', 'label' => 'Grooming Needs', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'noise_level', 'type' => 'enum', 'label' => 'Noise Level', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'trainability', 'type' => 'enum', 'label' => 'Trainability', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'outdoor_activity', 'type' => 'enum', 'label' => 'Outdoor Activity', 'options' => ['Haut','Medium', 'Bas']],
         ['name' => 'family_friendly', 'type' => 'tinyint', 'label' => 'Family Friendly'],
         ['name' => 'status', 'type' => 'tinyint', 'label' => 'Status'],
     ];
@@ -38,7 +38,7 @@ class AdminController extends Controller
     {
         $animals = Animal::all();
         $petshops = PetShop::all();
-        return view('admin', ['animals' => $animals, 'petshops' => $petshops]);
+        return view('admin.admin', ['animals' => $animals, 'petshops' => $petshops]);
     }
 
     public function editAnimal($id)
@@ -47,7 +47,7 @@ class AdminController extends Controller
         if (!$animal) {
             abort(404);
         }
-        return view('editAnimal', ['animal' => $animal, 'fields' => $this->animalFields]);
+        return view('admin.animal.editAnimal', ['animal' => $animal, 'fields' => $this->animalFields]);
     }
 
     public function editPetShop($id)
@@ -56,7 +56,7 @@ class AdminController extends Controller
         if (!$petShop) {
             abort(404);
         }
-        return view('editPetShop', ['petShop' => $petShop, 'fields' => $this->petshopFields]);
+        return view('admin.pet-shop.editPetShop', ['petShop' => $petShop, 'fields' => $this->petshopFields]);
     }
 
     public function updateAnimal(Request $request, $id)

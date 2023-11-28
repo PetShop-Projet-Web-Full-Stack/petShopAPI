@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,26 +19,42 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route for admin 
+// Route for admin
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [AdminController::class, 'index'])
-        ->name('admin.index');
 
-    // Get by id
-    Route::get('/edit-animal/{id}', [AdminController::class, 'editAnimal'])
-        ->name('admin.editAnimal');
-    Route::get('/edit-petshop/{id}', [AdminController::class, 'editPetShop'])
-        ->name('admin.editPetShop');
+    // Get login page for admin
+    Route::get('/login', [UserController::class, 'login'])
+        ->name('admin.login');
 
-    // Update
-    Route::put('/update-animal/{id}', [AdminController::class, 'updateAnimal'])
-        ->name('admin.updateAnimal');
-    Route::put('/update-petshop/{id}', [AdminController::class, 'updatePetShop'])
-        ->name('admin.updatePetShop');
+    // Post login page for admin
+    Route::post('/login', [UserController::class, 'loginPost'])
+        ->name('admin.loginPost');
 
-    // Delete
-    Route::get('/delete-animal/{id}', [AdminController::class, 'deleteAnimal'])
-        ->name('admin.deleteAnimal');
-    Route::get('/delete-petshop/{id}', [AdminController::class, 'deletePetShop'])
-        ->name('admin.deletePetShop');
+    // Logout
+    Route::get('/logout', [UserController::class, 'logout'])
+        ->name('admin.logout');
+
+    Route::group(['middleware' => 'authAdmin'], function () {
+        Route::get('/', [AdminController::class, 'index'])
+            ->name('admin.index');
+
+        // Get by id
+        Route::get('/edit-animal/{id}', [AdminController::class, 'editAnimal'])
+            ->name('admin.editAnimal');
+        Route::get('/edit-petshop/{id}', [AdminController::class, 'editPetShop'])
+            ->name('admin.editPetShop');
+
+        // Update
+        Route::put('/update-animal/{id}', [AdminController::class, 'updateAnimal'])
+            ->name('admin.updateAnimal');
+        Route::put('/update-petshop/{id}', [AdminController::class, 'updatePetShop'])
+            ->name('admin.updatePetShop');
+
+        // Delete
+        Route::get('/delete-animal/{id}', [AdminController::class, 'deleteAnimal'])
+            ->name('admin.deleteAnimal');
+        Route::get('/delete-petshop/{id}', [AdminController::class, 'deletePetShop'])
+            ->name('admin.deletePetShop');
+    });
+
 });

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminLoginRequest;
 use App\Http\Requests\UserSoftDestroyRequest;
 use App\Models\User;
 use App\Responses\UserResponse;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -56,6 +62,46 @@ class UserController extends Controller
         $user->save();
 
         return response()->json([], 204);
+    }
+
+    /**
+     * Display admin login page
+     * @return Application|Factory|View
+     */
+    public function login()
+    {
+        return view('admin.login');
+    }
+
+    /**
+     * Login process for admin
+     * @param AdminLoginRequest $request
+     * @return Application|Factory|View|RedirectResponse
+     */
+    public function loginPost(AdminLoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('admin');
+        }
+
+
+        return view('admin.login')->withErrors([
+            'email' => 'Les identifiants ne correspondent pas',
+        ]);
+
+    }
+
+    /**
+     * Logout process for admin
+     * @return RedirectResponse
+     */
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('admin.login');
     }
 
 }
