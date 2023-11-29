@@ -38,12 +38,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): Response|JsonResponse|RedirectResponse|ResponseHttpFondation
     {
-        if ($request->wantsJson()) {
 
-//            $statusCode = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 500;
-
-//            return response()->json(['message' => $e->getMessage()], $statusCode);
+        // check if the prefix is api and is CSRF token mismatch
+        if (str_starts_with($request->getUri(), config('app.url') . '/api')&& $e instanceof \Illuminate\Session\TokenMismatchException) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'errors' => [
+                    'token' => 'CSRF token mismatch'
+                ]
+            ], 419);
         }
+
         return parent::render($request, $e);
     }
 }
