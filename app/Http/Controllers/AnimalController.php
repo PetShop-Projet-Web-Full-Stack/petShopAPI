@@ -31,34 +31,34 @@ class AnimalController extends Controller
         return Cache::remember('animals_index' . $request->has('race') . $request->has('species') . $request->has('age_min') . $request->has('age_max'), 3600, function () use ($request) {
             $query = Animal::with(['race.species', 'animalsUsers', 'media'])->where('status', 1);
 
-        if (auth()->check()) {
-            $query->with(['animalsUsers' => function ($q) {
-                $q->where('user_id', auth()->user()->id);
-            }]);
-        }
+            if (auth()->check()) {
+                $query->with(['animalsUsers' => function ($q) {
+                    $q->where('user_id', auth()->user()->id);
+                }]);
+            }
 
-        if ($request->has('race')) {
-            $query->whereHas('race', function ($q) use ($request) {
-                $q->where('name', $request->input('race'));
-            });
-        }
+            if ($request->has('race')) {
+                $query->whereHas('race', function ($q) use ($request) {
+                    $q->where('name', $request->input('race'));
+                });
+            }
 
-        if ($request->has('species')) {
-            $query->whereHas('race.species', function ($q) use ($request) {
-                $q->where('name', $request->input('species'));
-            });
-        }
+            if ($request->has('species')) {
+                $query->whereHas('race.species', function ($q) use ($request) {
+                    $q->where('name', $request->input('species'));
+                });
+            }
 
-        if ($request->has('age_min') && $request->has('age_max')) {
-            $query->whereRaw('TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) BETWEEN ? AND ?', [
-                $request->input('age_min'),
-                $request->input('age_max'),
-            ]);
-        }
+            if ($request->has('age_min') && $request->has('age_max')) {
+                $query->whereRaw('TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) BETWEEN ? AND ?', [
+                    $request->input('age_min'),
+                    $request->input('age_max'),
+                ]);
+            }
 
-        $animals = $query->get();
-        $response = new AnimalsResponse($animals->toArray());
-        return $response->toArray();
+            $animals = $query->get();
+            $response = new AnimalsResponse($animals->toArray());
+            return $response->toArray();
         });
     }
 

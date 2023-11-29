@@ -26,17 +26,17 @@ class PetShopController extends Controller
         return Cache::remember('pet-shop_index' . $request->has('city') . $request->has('zipcode'), 3600, function () use ($request) {
             $query = PetShop::with('animals', 'media')->where('status', 1);
 
-        if ($request->has('city')) {
-            $query->where('city', $request->input('city'));
-        }
+            if ($request->has('city')) {
+                $query->where('city', $request->input('city'));
+            }
 
-        if ($request->has('zipcode')) {
-            $query->where('zipcode', 'LIKE', '%' . $request->input('zipcode') . '%');
-        }
+            if ($request->has('zipcode')) {
+                $query->where('zipcode', 'LIKE', '%' . $request->input('zipcode') . '%');
+            }
 
-        $petShops = $query->get();
-        $response = new PetShopsResponse($petShops->toArray());
-        return $response->toArray();
+            $petShops = $query->get();
+            $response = new PetShopsResponse($petShops->toArray());
+            return $response->toArray();
         });
     }
 
