@@ -21,6 +21,12 @@ class SpeciesTest extends MainTest
         $this->createSpecies();
     }
 
+    public function testDeleteSpecies()
+    {
+        $species = $this->createSpecies();
+        $this->testDeleteEntity('species', $species);
+    }
+
     protected function createSpecies()
     {
         $requestData = ['name' => 'Species test'];

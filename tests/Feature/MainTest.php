@@ -48,4 +48,11 @@ class MainTest extends TestCase
         $this->assertDatabaseHas($databaseTableName, $entityToCreate);
         return $response;
     }
+
+    protected function testDeleteEntity($completeUrl, $entityToDelete)
+    {
+        $finalUrl = $this->url . $completeUrl . '/' . $entityToDelete->id;
+        $response = $this->delete($finalUrl, $entityToDelete);
+        $response->assertStatus(200);
+    }
 }

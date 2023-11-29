@@ -21,6 +21,12 @@ class PetshopTest extends MainTest
         $this->createPetshop();
     }
 
+    public function testDeletePetShop(): void
+    {
+        $petshop = $this->createPetshop();
+        $this->testDeleteEntity('pet-shops', $petshop);
+    }
+
     protected function createPetshop()
     {
         $petSopData = ["name" => "anmialerie test", "address" => "4 bis rue Mirebeau", "zipcode" => "42350", "city" => "La talaudiere", "phone" => "0787230611", "content" => "Un content", "medias_id" => null];
