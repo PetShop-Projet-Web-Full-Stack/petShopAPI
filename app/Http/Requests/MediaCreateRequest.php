@@ -14,9 +14,7 @@ class MediaCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'path' => ['required', 'string'],
-            'extension' => ['required', 'string'],
-            'title' => ['required', 'string'],
+            'content' => ['required', 'string'],
         ];
     }
 }

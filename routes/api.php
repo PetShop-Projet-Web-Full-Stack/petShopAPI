@@ -3,6 +3,7 @@
 use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalsUserController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PetShopController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RaceController;
@@ -82,6 +83,8 @@ Route::middleware(['auth:sanctum', 'account-is-active'])->group(function () {
         ->name('animals-user.create');
     Route::delete('/animals-user/{id}', [AnimalsUserController::class, 'delete'])
         ->name('animals-user.delete');
+    Route::post('/medias', [MediaController::class, 'create'])
+        ->name('medias.create');
 
     // Route for reset password
     Route::get('/reset-password/', [ResetUserPassword::class, 'reset'])
