@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use App\Models\PetShop;
+use App\Models\Race;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,14 +14,14 @@ class AdminController extends Controller
         ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
         ['name' => 'gender', 'type' => 'enum', 'label' => 'Gender', 'options' => ['Male', 'Female']],
         ['name' => 'date_of_birth', 'type' => 'date', 'label' => 'Date of Birth'],
-        ['name' => 'activity_level', 'type' => 'enum', 'label' => 'Activity Level', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'activity_level', 'type' => 'enum', 'label' => 'Activity Level', 'options' => ['Haut', 'Medium', 'Bas']],
         ['name' => 'living_space', 'type' => 'enum', 'label' => 'Living Space', 'options' => ['Appartement', 'Maison']],
         ['name' => 'size', 'type' => 'enum', 'label' => 'Size', 'options' => ['Petit', 'Medium', 'Large']],
-        ['name' => 'socialization', 'type' => 'enum', 'label' => 'Socialization', 'options' => ['Haut','Medium', 'Bas']],
-        ['name' => 'grooming_needs', 'type' => 'enum', 'label' => 'Grooming Needs', 'options' => ['Haut','Medium', 'Bas']],
-        ['name' => 'noise_level', 'type' => 'enum', 'label' => 'Noise Level', 'options' => ['Haut','Medium', 'Bas']],
-        ['name' => 'trainability', 'type' => 'enum', 'label' => 'Trainability', 'options' => ['Haut','Medium', 'Bas']],
-        ['name' => 'outdoor_activity', 'type' => 'enum', 'label' => 'Outdoor Activity', 'options' => ['Haut','Medium', 'Bas']],
+        ['name' => 'socialization', 'type' => 'enum', 'label' => 'Socialization', 'options' => ['Haut', 'Medium', 'Bas']],
+        ['name' => 'grooming_needs', 'type' => 'enum', 'label' => 'Grooming Needs', 'options' => ['Haut', 'Medium', 'Bas']],
+        ['name' => 'noise_level', 'type' => 'enum', 'label' => 'Noise Level', 'options' => ['Haut', 'Medium', 'Bas']],
+        ['name' => 'trainability', 'type' => 'enum', 'label' => 'Trainability', 'options' => ['Haut', 'Medium', 'Bas']],
+        ['name' => 'outdoor_activity', 'type' => 'enum', 'label' => 'Outdoor Activity', 'options' => ['Haut', 'Medium', 'Bas']],
         ['name' => 'family_friendly', 'type' => 'tinyint', 'label' => 'Family Friendly'],
         ['name' => 'status', 'type' => 'tinyint', 'label' => 'Status'],
     ];
@@ -146,5 +147,71 @@ class AdminController extends Controller
         }
         $petshop->forceDelete();
         return redirect()->route('admin.index')->with('success', 'Petshop deleted successfully');
+    }
+
+    public function addAnimal()
+    {
+        $races = Race::all();
+        $petShops = PetShop::all();
+        return view('admin.animal.addAnimal', ['fields' => $this->animalFields, 'races' => $races, 'petShops' => $petShops]);
+    }
+
+    public function addPetShop()
+    {
+        return view('admin.pet-shop.addPetShop', ['fields' => $this->petshopFields]);
+    }
+
+    public function createAnimal(Request $request)
+    {
+
+        $validationRules = [];
+        foreach ($this->animalFields as $field) {
+            $fieldName = $field['name'];
+            $fieldType = $field['type'];
+            $validationRules[$fieldName] = $this->mapValidationRule($fieldType, $field);
+        }
+
+        $validationRules['family_friendly'] = 'nullable|boolean';
+        $validationRules['status'] = 'nullable|boolean';
+
+        $validatedData = $request->validate($validationRules);
+
+        $animal = new Animal();
+
+        foreach ($validatedData as $field => $value) {
+            $animal->{$field} = $value;
+        }
+
+        $raceId = $request->input('race');
+        $petshopId = $request->input('petshop');
+        $animal->pet_shop_id = $petshopId;
+        $animal->race_id = $raceId;
+        $animal->save();
+
+        return redirect()->route('admin.index')->with('success', 'Animal added successfully');
+    }
+
+    public function createPetShop(Request $request)
+    {
+        $validationRules = [];
+        foreach ($this->petshopFields as $field) {
+            $fieldName = $field['name'];
+            $fieldType = $field['type'];
+            $validationRules[$fieldName] = $this->mapValidationRule($fieldType, $field);
+        }
+
+        $validatedData = $request->validate($validationRules);
+        $petshop = new PetShop();
+
+        if (!$petshop) {
+            return redirect()->route('admin.index')->with('error', 'PetShop not found');
+        }
+
+        foreach ($validatedData as $field => $value) {
+            $petshop->{$field} = $value;
+        }
+
+        $petshop->save();
+        return redirect()->route('admin.index')->with('success', 'PetShop updated successfully');
     }
 }

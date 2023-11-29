@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Éditer un animal')
+@section('title', 'Ajouter un animal')
 
 @section('header')
 @parent
@@ -8,38 +8,55 @@
 
 @section('content')
 <section>
-    <form method="POST" action="{{ route('admin.updateAnimal', ['id' => $animal->id]) }}">
+    <form method="POST" action="{{ route('admin.createAnimal')}}">
         @csrf
         @method('PUT')
-        <h1>Edit Animal</h1>
+        <h1>Add Animal</h1>
         <div class="d-flex col gap-3 justify-content-center flex-wrap">
+            <div class='col-5'>
+                <label for="race">Race:</label>
+                <select name="race">
+                    @foreach ($races as $race)
+                    <option value="{{ $race->id }}">{{ $race->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class='col-5'>
+                <label for="petshop">Animalerie:</label>
+                <select name="petshop">
+                    @foreach ($petShops as $petshop)
+                    <option value="{{ $petshop->id }}">{{ $petshop->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             @foreach($fields as $field)
             <div class="col-5">
                 @if ($field['type'] === 'enum')
                 <label for="{{ $field['name'] }}">{{ $field['label'] }}:</label>
                 <select name="{{ $field['name'] }}" required>
                     @foreach ($field['options'] as $option)
-                    <option value="{{ $option }}" {{ $animal->{$field['name']} === $option ? 'selected' : '' }}>{{ $option }}</option>
+                    <option value="{{ $option }}">{{ $option }}</option>
                     @endforeach
                 </select>
                 @elseif ($field['type'] === 'date')
                 <label for="{{ $field['name'] }}">{{ $field['label'] }}:</label>
-                <input type="date" name="{{ $field['name'] }}" value="{{ $animal->{$field['name']} }}" required>
+                <input type="date" name="{{ $field['name'] }}" required>
                 @elseif ($field['type'] === 'tinyint')
                 <div class="form-check">
-                    <input type="checkbox" name="{{ $field['name'] }}" class="form-check-input" {{ $animal->{$field['name']} == 1 ? 'checked' : '' }} value="1">
+                    <input type="checkbox" name="{{ $field['name'] }}" class="form-check-input" value="1">
                     <label for="{{ $field['name'] }}" class="form-label">
                         {{ $field['label'] }}
                     </label>
                 </div>
                 @else
                 <label for="{{ $field['name'] }}">{{ $field['label'] }}:</label>
-                <input type="{{ $field['type'] }}" name="{{ $field['name'] }}" value="{{ $animal->{$field['name']} }}" required>
+                <input type="{{ $field['type'] }}" name="{{ $field['name'] }}" required>
                 @endif
             </div>
             @endforeach
+
         </div>
-        <button type="submit">Save</button>
+        <button type="submit">Add</button>
         <a href="{{ route('admin.index') }}">
             <button type="button">Retour</button>
         </a>

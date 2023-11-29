@@ -55,6 +55,16 @@ Route::group(['prefix' => 'admin'], function () {
             ->name('admin.deleteAnimal');
         Route::get('/delete-petshop/{id}', [AdminController::class, 'deletePetShop'])
             ->name('admin.deletePetShop');
-    });
 
+        // Add
+        Route::get('/add-animal', [AdminController::class, 'addAnimal'])
+            ->name('admin.addAnimal');
+        Route::get('/add-petshop', [AdminController::class, 'addPetShop'])
+            ->name('admin.addPetShop');
+
+        Route::put('/create-animal', [AdminController::class, 'createAnimal'])
+            ->name('admin.createAnimal');
+        Route::put('/create-petshop', [AdminController::class, 'createPetShop'])
+            ->name('admin.createPetShop');
+    });
 });
