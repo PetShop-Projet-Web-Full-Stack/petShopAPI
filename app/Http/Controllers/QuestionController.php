@@ -25,7 +25,7 @@ class QuestionController extends Controller
             $animals->where($question->animals_column, $answer['answer']);
         }
         $response['animals'] = $animals->get()->toArray();
-        $response['total'] = $animals->count();
+        $response['total'] = Animal::all()->count();
 
         $response = new QuestionsResponse($response);
         return $response->toArray();
