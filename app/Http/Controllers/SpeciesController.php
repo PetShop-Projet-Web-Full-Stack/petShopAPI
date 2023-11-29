@@ -13,7 +13,7 @@ class SpeciesController extends Controller
 {
     public function show(string $id): array
     {
-        return Cache::remember('species' . $id, 3600, function () use ($id) {
+        return Cache::remember('species_' . $id, 3600, function () use ($id) {
             $species = Species::where('id', $id)->where('status', 1)->first();
             $response = new SingularSpeciesResponse($species->toArray());
             return $response->toArray();
@@ -22,7 +22,7 @@ class SpeciesController extends Controller
 
     public function index(): array
     {
-        return Cache::remember('pet-shop_index', 3600, function () {
+        return Cache::remember('species_index', 3600, function () {
             $species = Species::all()->where('status', 1);
             $response = new SpeciesResponse($species->toArray());
             return $response->toArray();
