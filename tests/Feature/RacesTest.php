@@ -23,7 +23,7 @@ class RacesTest extends MainTest
         $this->createRace($species);
     }
 
-    public function testDeleteSpecies()
+    public function testDeleteRace()
     {
         $species = $this->createSpecies();
         $race = $this->createRace($species);
