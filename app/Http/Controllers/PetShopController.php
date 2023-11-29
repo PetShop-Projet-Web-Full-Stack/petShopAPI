@@ -8,31 +8,36 @@ use App\Responses\PetShopsResponse;
 use App\Responses\CreatePetShopResponse;
 use App\Http\Requests\PetShopIndexRequest;
 use App\Http\Requests\PetShopCreateRequest;
+use Illuminate\Support\Facades\Cache;
 
 class PetShopController extends Controller
 {
     public function show(string $id): array
     {
-        $petShop = PetShop::where('id', $id)->where('status', 1)->with('animals')->firstOrFail();
-        $response = new PetShopResponse($petShop->toArray());
-        return $response->toArray();
+        return Cache::remember('pet-shop_' . $id, 3600, function () use ($id) {
+            $petShop = PetShop::where('id', $id)->where('status', 1)->with('animals')->firstOrFail();
+            $response = new PetShopResponse($petShop->toArray());
+            return $response->toArray();
+        });
     }
 
     public function index(PetShopIndexRequest $request): array
     {
-        $query = PetShop::with('animals')->where('status', 1);
+        return Cache::remember('pet-shop_index' . $request->has('city') . $request->has('zipcode'), 3600, function () use ($request) {
+            $query = PetShop::with('animals')->where('status', 1);
 
-        if ($request->has('city')) {
-            $query->where('city', $request->input('city'));
-        }
+            if ($request->has('city')) {
+                $query->where('city', $request->input('city'));
+            }
 
-        if ($request->has('zipcode')) {
-            $query->where('zipcode', 'LIKE', '%' . $request->input('zipcode') . '%');
-        }
+            if ($request->has('zipcode')) {
+                $query->where('zipcode', 'LIKE', '%' . $request->input('zipcode') . '%');
+            }
 
-        $petShops = $query->get();
-        $response = new PetShopsResponse($petShops->toArray());
-        return $response->toArray();
+            $petShops = $query->get();
+            $response = new PetShopsResponse($petShops->toArray());
+            return $response->toArray();
+        });
     }
 
     public function create(PetShopCreateRequest $request): array

@@ -7,21 +7,26 @@ use App\Responses\SpeciesResponse;
 use App\Responses\CreateSpeciesResponse;
 use App\Responses\SingularSpeciesResponse;
 use App\Http\Requests\SpeciesCreateRequest;
+use Illuminate\Support\Facades\Cache;
 
 class SpeciesController extends Controller
 {
     public function show(string $id): array
     {
-        $species = Species::findOrFail($id)->where('status', 1);
-        $response = new SingularSpeciesResponse($species->toArray());
-        return $response->toArray();
+        return Cache::remember('species' . $id, 3600, function () use ($id) {
+            $species = Species::where('id', $id)->where('status', 1)->first();
+            $response = new SingularSpeciesResponse($species->toArray());
+            return $response->toArray();
+        });
     }
 
     public function index(): array
     {
-        $species = Species::all()->where('status', 1);
-        $response = new SpeciesResponse($species->toArray());
-        return $response->toArray();
+        return Cache::remember('pet-shop_index', 3600, function () {
+            $species = Species::all()->where('status', 1);
+            $response = new SpeciesResponse($species->toArray());
+            return $response->toArray();
+        });
     }
 
     public function create(SpeciesCreateRequest $request): array
