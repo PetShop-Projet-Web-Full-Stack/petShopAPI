@@ -14,7 +14,7 @@ class RaceController extends Controller
 {
     public function show(string $id): array
     {
-        return Cache::remember('race_' . $id, 3600, function () use ($id) {
+        return Cache::remember('races_' . $id, 3600, function () use ($id) {
             $race = Race::findOrFail($id)->with('species')->where('status', 1)->first();
             $response = new RaceResponse($race->toArray());
             return $response->toArray();
@@ -23,7 +23,7 @@ class RaceController extends Controller
 
     public function index(): array
     {
-        return Cache::remember('race_index', 3600, function () {
+        return Cache::remember('races_index', 3600, function () {
             $race = Race::all()->where('status', 1);
             $response = new RacesResponse($race->toArray());
             return $response->toArray();

@@ -17,12 +17,12 @@ class QuestionController extends Controller
         return $response->toArray();
     }
 
-    public function answers(QuestionRequest $request) : array
+    public function answers(QuestionRequest $request): array
     {
         $animals = Animal::query();
         foreach ($request->answers as $answer) {
             $question = Question::find($answer['id_question']);
-            $animals->where($question->animals_column, $answer['answer']);
+            $animals->where($question->animals_column, $answer['answer'])->with(['animal', 'animal.media']);
         }
         $response['animals'] = $animals->get()->toArray();
         $response['total'] = Animal::all()->count();
