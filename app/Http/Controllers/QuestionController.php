@@ -19,7 +19,7 @@ class QuestionController extends Controller
 
     public function answers(QuestionRequest $request): array
     {
-        $animals = Animal::query();
+        $animals = Animal::query()->with(['media']);;
         foreach ($request->answers as $answer) {
             $question = Question::find($answer['id_question']);
             $animals->where($question->animals_column, $answer['answer'])->with(['animal', 'animal.media']);
