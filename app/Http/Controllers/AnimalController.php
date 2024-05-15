@@ -14,7 +14,7 @@ class AnimalController extends Controller
 {
     public function show(string $id): array
     {
-        return Cache::remember('animal_' . $id, 3600, function () use ($id) {
+        return Cache::remember('animals_' . $id, 3600, function () use ($id) {
             $animal = Animal::where('id', $id)->where('status', 1)->with(['petShop', 'race.species', 'media']);
             if (auth()->check()) {
                 $animal->with(['animalsUsers' => function ($q) {

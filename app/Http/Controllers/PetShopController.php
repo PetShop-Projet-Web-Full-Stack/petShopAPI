@@ -14,8 +14,8 @@ class PetShopController extends Controller
 {
     public function show(string $id): array
     {
-        return Cache::remember('pet-shop_' . $id, 3600, function () use ($id) {
-            $petShop = PetShop::where('id', $id)->where('status', 1)->with('animals', 'media')->firstOrFail();
+        return Cache::remember('pet-shops_' . $id, 3600, function () use ($id) {
+            $petShop = PetShop::where('id', $id)->where('status', 1)->with(['animals', 'media', 'animals.media'])->firstOrFail();
             $response = new PetShopResponse($petShop->toArray());
             return $response->toArray();
         });
@@ -23,8 +23,8 @@ class PetShopController extends Controller
 
     public function index(PetShopIndexRequest $request): array
     {
-        return Cache::remember('pet-shop_index' . $request->has('city') . $request->has('zipcode'), 3600, function () use ($request) {
-            $query = PetShop::with('animals', 'media')->where('status', 1);
+        return Cache::remember('pet-shops_index' . $request->has('city') . $request->has('zipcode'), 3600, function () use ($request) {
+            $query = PetShop::with(['animals', 'media', 'animals.media'])->where('status', 1);
 
             if ($request->has('city')) {
                 $query->where('city', $request->input('city'));
